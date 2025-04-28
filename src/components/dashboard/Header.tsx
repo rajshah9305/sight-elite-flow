@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FadeIn, HoverScale } from '@/components/ui/motion';
@@ -21,13 +20,12 @@ const Header = () => {
   ];
 
   const isActive = (path: string) => {
-    // Check if we're on the homepage and the nav item is Dashboard
     if (currentPath === '/' && path === '/dashboard') return true;
     return currentPath === path;
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-sole-dark/80 backdrop-blur-lg border-b border-white/5">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-sole-dark/95 backdrop-blur-lg border-b border-sole-purple/10">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <FadeIn className="flex items-center gap-1" duration={0.6} delay={0.1}>
           <Link to="/" className="flex items-center gap-1">
@@ -44,7 +42,7 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <FadeIn className="flex items-center gap-8" delay={0.2}>
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <HoverScale key={item.name}>
                 <Link 
                   to={item.href} 
@@ -53,7 +51,7 @@ const Header = () => {
                   }`}
                 >
                   {item.name}
-                  <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-sole-purple to-sole-electric-blue transition-all duration-300 ${
+                  <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-sole-purple via-sole-neon to-sole-electric-blue transition-all duration-300 ${
                     isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}></span>
                 </Link>

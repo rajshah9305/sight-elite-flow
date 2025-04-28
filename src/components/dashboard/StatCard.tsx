@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FadeIn, HoverScale } from '@/components/ui/motion';
@@ -77,7 +76,6 @@ const StatCard: React.FC<StatCardProps> = ({
         <span className="text-xs text-gray-400 ml-2">vs last period</span>
       </div>
       
-      {/* Decorative Line */}
       <div className={cn(
         "absolute bottom-0 left-0 h-1 w-full",
         isPositive ? "bg-sole-electric-blue/30" : "bg-red-500/30"
@@ -93,12 +91,11 @@ const StatCard: React.FC<StatCardProps> = ({
   const cardElement = (
     <Card 
       className={cn(
-        "overflow-hidden relative border-white/5 bg-gradient-to-br from-sole-dark-accent to-sole-navy cursor-pointer",
+        "overflow-hidden relative border-white/10 bg-gradient-to-br from-sole-dark-accent to-sole-navy/50 cursor-pointer hover:shadow-lg transition-all duration-300",
         className
       )}
       onClick={handleCardClick}
     >
-      {/* Background Glow Effect */}
       <div className="absolute inset-0 opacity-50">
         <div className={cn(
           "absolute -inset-1 rounded-full blur-xl opacity-20",
