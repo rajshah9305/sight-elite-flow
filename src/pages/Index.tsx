@@ -8,6 +8,7 @@ import FeatureGrid from '@/components/dashboard/FeatureGrid';
 import { FadeIn, GradientText } from '@/components/ui/motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   return (
@@ -52,18 +53,22 @@ const Index = () => {
                 Join thousands of successful entrepreneurs who have taken their business to the next level with SoleSight Analytics.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button 
-                  className="bg-gradient-to-r from-sole-purple to-sole-electric-blue hover:opacity-90 text-white px-6 h-12"
-                >
-                  Get Started Now
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="border-white/10 text-white hover:bg-white/5 h-12"
-                >
-                  Schedule a Demo
-                </Button>
+                <Link to="/dashboard">
+                  <Button 
+                    className="bg-gradient-to-r from-sole-purple to-sole-electric-blue hover:opacity-90 text-white px-6 h-12"
+                  >
+                    Get Started Now
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link to="/analytics">
+                  <Button 
+                    variant="outline" 
+                    className="border-white/10 text-white hover:bg-white/5 h-12"
+                  >
+                    View Analytics
+                  </Button>
+                </Link>
               </div>
             </FadeIn>
           </div>
@@ -74,13 +79,15 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <FadeIn className="flex items-center gap-2 mb-6 md:mb-0">
-                <div className="relative h-8 w-8">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-sole-purple to-sole-electric-blue rounded-full"></div>
-                  <div className="absolute inset-0 h-8 w-8 bg-sole-dark-accent rounded-full flex items-center justify-center transform translate-x-0.5 translate-y-0.5">
-                    <span className="text-white font-bold text-lg">S</span>
+                <Link to="/" className="flex items-center gap-2">
+                  <div className="relative h-8 w-8">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-sole-purple to-sole-electric-blue rounded-full"></div>
+                    <div className="absolute inset-0 h-8 w-8 bg-sole-dark-accent rounded-full flex items-center justify-center transform translate-x-0.5 translate-y-0.5">
+                      <span className="text-white font-bold text-lg">S</span>
+                    </div>
                   </div>
-                </div>
-                <span className="text-xl font-bold text-white">SoleSight</span>
+                  <span className="text-xl font-bold text-white">SoleSight</span>
+                </Link>
               </FadeIn>
               
               <FadeIn className="text-center md:text-right">

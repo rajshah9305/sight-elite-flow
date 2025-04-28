@@ -4,30 +4,41 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FadeIn, HoverScale } from '@/components/ui/motion';
 import { Search, BellIcon, User, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   
   const navItems = [
-    { name: 'Dashboard', href: '#' },
-    { name: 'Analytics', href: '#' },
-    { name: 'Products', href: '#' },
-    { name: 'Settings', href: '#' }
+    { name: 'Dashboard', href: '/dashboard' },
+    { name: 'Analytics', href: '/analytics' },
+    { name: 'Products', href: '/products' },
+    { name: 'Settings', href: '/settings' }
   ];
+
+  const isActive = (path: string) => {
+    // Check if we're on the homepage and the nav item is Dashboard
+    if (currentPath === '/' && path === '/dashboard') return true;
+    return currentPath === path;
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-sole-dark/80 backdrop-blur-lg border-b border-white/5">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <FadeIn className="flex items-center gap-1" duration={0.6} delay={0.1}>
-          <div className="relative h-8 w-8">
-            <div className="absolute inset-0 bg-gradient-to-tr from-sole-purple to-sole-electric-blue rounded-full animate-pulse-soft"></div>
-            <div className="absolute inset-0 h-8 w-8 bg-sole-dark rounded-full flex items-center justify-center transform translate-x-0.5 translate-y-0.5">
-              <span className="text-white font-bold text-lg">S</span>
+          <Link to="/" className="flex items-center gap-1">
+            <div className="relative h-8 w-8">
+              <div className="absolute inset-0 bg-gradient-to-tr from-sole-purple to-sole-electric-blue rounded-full animate-pulse-soft"></div>
+              <div className="absolute inset-0 h-8 w-8 bg-sole-dark rounded-full flex items-center justify-center transform translate-x-0.5 translate-y-0.5">
+                <span className="text-white font-bold text-lg">S</span>
+              </div>
             </div>
-          </div>
-          <span className="ml-2 text-xl font-bold text-white">SoleSight</span>
+            <span className="ml-2 text-xl font-bold text-white">SoleSight</span>
+          </Link>
         </FadeIn>
         
         {/* Desktop Navigation */}
@@ -35,13 +46,17 @@ const Header = () => {
           <FadeIn className="flex items-center gap-8" delay={0.2}>
             {navItems.map((item, index) => (
               <HoverScale key={item.name}>
-                <a 
-                  href={item.href} 
-                  className="text-gray-300 hover:text-white transition-colors relative group py-1"
+                <Link 
+                  to={item.href} 
+                  className={`text-gray-300 hover:text-white transition-colors relative group py-1 ${
+                    isActive(item.href) ? 'text-white' : ''
+                  }`}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-sole-purple to-sole-electric-blue group-hover:w-full transition-all duration-300"></span>
-                </a>
+                  <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-sole-purple to-sole-electric-blue transition-all duration-300 ${
+                    isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}></span>
+                </Link>
               </HoverScale>
             ))}
           </FadeIn>
@@ -88,14 +103,16 @@ const Header = () => {
           >
             <nav className="container mx-auto py-4 px-4 flex flex-col">
               {navItems.map((item) => (
-                <a 
+                <Link 
                   key={item.name} 
-                  href={item.href} 
-                  className="py-3 px-4 text-gray-200 hover:text-white hover:bg-white/5 rounded-md transition-colors"
+                  to={item.href} 
+                  className={`py-3 px-4 text-gray-200 hover:text-white hover:bg-white/5 rounded-md transition-colors ${
+                    isActive(item.href) ? 'text-white bg-white/5' : ''
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
               <div className="flex items-center gap-4 mt-4 pt-4 border-t border-white/10">
                 <button className="p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-white/5">
