@@ -91,8 +91,8 @@ const Products = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/5">
-                    {filteredProducts.map((product, index) => (
-                      <StaggerItem key={product.id} index={index}>
+                    {filteredProducts.map((product) => (
+                      <StaggerItem key={product.id}>
                         <tr 
                           className="hover:bg-white/5 cursor-pointer transition-colors"
                           onClick={() => handleProductClick(product)}
